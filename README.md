@@ -8,3 +8,7 @@ Requirements:
 Installing and running:
 * Clone to local filesystem
 * python app.py (or serve with gunicorn)
+
+Screenshot:
+
+![ScreenShot](screenshot.png?raw=true "Screenshot")
