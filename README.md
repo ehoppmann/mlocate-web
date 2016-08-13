@@ -1,5 +1,5 @@
 # mlocate-web
-A very simple Python3 web application for searching a server's filesystem by filename from the web using locate / mlocate. 
+A very simple Python web application for searching a server's filesystem by filename from the web using locate / mlocate. 
 
 Requirements:
 * Python3 (developed using 3.5.2)
@@ -7,7 +7,7 @@ Requirements:
 
 Installing and running:
 * Clone to local filesystem
-* python app.py (or serve with gunicorn)
+* python3 app.py (or serve with gunicorn)
 
 Screenshot:
 
