@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>mlocate web search</title>
+		<link rel="stylesheet" href="css/bootstrap-3.3.7.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme-3.3.7.min.css">
+
+	</head>
+	<body>
+		<div class="container">
+			<h1>Simple mlocate search <small>searching {{hostname|safe}}</small></h1>
+			<form class="form-inline" method="get">
+				<div class="form-group">
+					<label class="requiredField" for="searchbox">Query: </label>
+					<input type="text" class="form-control" id="searchbox" name="searchbox" placeholder="text">
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="caseSensitive" id="caseSensitive"> Case Sensitive
+					</label>
+				</div>
+				<button type="submit" class="btn btn-default">Go</button>
+			</form>
+			<br>
+			<ul>
+				{{resultslist|safe}}
+			</ul>
+		</div>
+	</body>
+</html>
