@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-import flask 
+import flask
 from subprocess import Popen, PIPE
 from flask import send_from_directory
 from socket import gethostname
@@ -35,6 +35,7 @@ def index():
         else:
             cs = ""
         command = 'mlocate ' + cs + quote(query)
+        command = command.encode('utf-8')
         with Popen(command, shell=True, stdout=PIPE) as proc:
             outs = proc.stdout.read()
         results = outs.splitlines()
@@ -54,4 +55,4 @@ def send_css(path):
 
 if __name__ == '__main__':
     port = 5000
-    app.run(debug=False,host='0.0.0.0',port=port)   
+    app.run(debug=False,host='0.0.0.0',port=port)
