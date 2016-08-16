@@ -1,14 +1,47 @@
 # mlocate-web
-A very simple Python web application for searching a server's filesystem by filename from the web using locate / mlocate. 
+A very simple Python web application that offers a web interface for searching a system's filesystem by name using locate / mlocate. 
 
-Requirements:
+## Requirements:
 * Python3 (developed using 3.5.2)
 * Flask (developed using 0.11 installed in a venv with pip)
+* A linux distribution with locate/mlocate set up (developed on Ubuntu 16.04)
 
-Installing and running:
+## Installing and running:
 * Clone to local filesystem
-* python3 app.py (or serve with gunicorn)
+* cd to directory
+* `python3 app.py`
+  * Alternately for a better and more permanent solution serve webapp using gunicorn - see directions below screenshot.
 
-Screenshot:
+## Screenshot
 
 ![ScreenShot](screenshot.png?raw=true "Screenshot")
+
+## Set up as system service on ubuntu 16.04
+* `git clone https://github.com/eric11/mlocate-web.git`
+* `cd mlocate-web`
+* `sudo apt-get install python3-pip`
+* `pip3 install virtualenv`
+* `virtualenv venv`
+* `source venv/bin/activate`
+* `pip3 install -r requrements.txt`
+* `pip3 install gunicorn`
+* Create the file `/etc/systemd/system/gunicorn.service` with this content:
+```
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+PIDFile=/run/gunicorn/pid
+User=<USER YOU WANT THIS TO RUN AS - SUGGEST LIMITED USER>
+Group=<GROUP YOU WANT THIS TO RUN AS>
+WorkingDirectory=<BASE DIRECTORY - WHERE YOU CLONED TO>
+ExecStart=<BASE DIRECTORY - WHERE YOU CLONED TO>/venv/bin/gunicorn --workers 3 -b 0.0.0.0:8000 app:app
+
+[Install]
+WantedBy=multi-user.target
+```
+* `systemctl start gunicorn`
+* `systemctl enable gunicorn`
+
+The search service should now be available on port 8000 and will automatically start with the system.
