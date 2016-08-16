@@ -6,11 +6,11 @@ A very simple Python web application that offers a web interface for searching a
 * Flask (developed using 0.11 installed in a venv with pip)
 * A linux distribution with locate/mlocate set up (developed on Ubuntu 16.04)
 
-## Installing and running:
+## Installing and running, in short:
 * Clone to local filesystem
 * cd to directory
 * `python3 app.py`
-  * Alternately for a better and more permanent solution serve webapp using gunicorn - see directions below screenshot.
+* **For detailed instructions, with autostart and using gunicorn to serve the webapp, see below screenshot**
 
 ## Screenshot
 
