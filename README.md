@@ -23,7 +23,7 @@ A very simple Python web application that offers a web interface for searching a
 * `pip3 install virtualenv`
 * `virtualenv venv`
 * `source venv/bin/activate`
-* `pip3 install -r requrements.txt`
+* `pip3 install -r requirements.txt`
 * `pip3 install gunicorn`
 * Create the file `/etc/systemd/system/gunicorn.service` with this content:
 ```
