@@ -17,7 +17,7 @@ A very simple Python web application that offers a web interface for searching a
 ![ScreenShot](screenshot.png?raw=true "Screenshot")
 
 ## Set up as system service on ubuntu 16.04
-* `git clone https://github.com/eric11/mlocate-web.git`
+* `git clone https://github.com/ehoppmann/mlocate-web.git`
 * `cd mlocate-web`
 * `sudo apt-get install python3-pip`
 * `pip3 install virtualenv`
