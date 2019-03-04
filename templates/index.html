@@ -23,6 +23,7 @@
 				<button type="submit" class="btn btn-default">Go</button>
 			</form>
 			<br>
+                        {% if results_truncated %}<b>WARNING: results truncated</b> (more than MAX_RESULT_BYTES bytes returned by mlocate)<br><br>{% endif %}
 			<ul>
 				{{resultslist|safe}}
 			</ul>

@@ -8,6 +8,8 @@ from flask import send_from_directory
 from socket import gethostname
 from pipes import quote
 
+MAX_RESULT_BYTES = 1000000  # set to -1 to disable limit
+
 app = flask.Flask(__name__)
 
 def getitem(obj, item, default):
@@ -29,6 +31,7 @@ def index():
     hostname = gethostname()
     if query == '':
         resultslist = ''
+        results_truncated = False
     else:
         if cs != 'on':
             cs = "-i "
@@ -37,14 +40,18 @@ def index():
         command = 'mlocate ' + cs + quote(query)
         command = command.encode('utf-8')
         with Popen(command, shell=True, stdout=PIPE) as proc:
-            outs = proc.stdout.read()
+            outs = proc.stdout.read(MAX_RESULT_BYTES)
         results = outs.splitlines()
+        results_truncated = len(outs) == MAX_RESULT_BYTES
+        if results_truncated:
+            results = results[:-1]
         resultslist = ""
         for entry in results:
             resultslist = resultslist + "<li>" + entry.decode('utf-8') + "</li>"
 
     html = flask.render_template(
         'index.html',
+        results_truncated=results_truncated,
         resultslist=resultslist,
         hostname=hostname)
     return html
